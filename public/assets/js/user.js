@@ -18,7 +18,9 @@ $('#userForm').on('submit', function() {
 });
 
 // 上传头像
-$('#avatar').on('change', function() {
+// $('#avatar').on('change', function() {
+// 以上的问题是，修改用户信息时，上传图片的效果不起效了
+$('#modifyBox').on('change', '#avatar', function() {
     let formData = new FormData();
     formData.append('avatar', this.files[0]);
     $.ajax({
@@ -51,4 +53,34 @@ $.ajax({
         });
         $('#userBox').html(html);
     }
+});
+
+// 用户编辑
+$('#userBox').on('click', '.edit', function() {
+    // 获取被点击用户的 ID
+    let id = $(this).attr('data-id');
+    $.ajax({
+        type: 'GET',
+        url: '/users/'+id,
+        success: function(response) {
+            let html = template('modifyTpl', response);
+            $('#modifyBox').html(html);
+        }
+    });
+});
+
+// 为修改表单添加表单提交功能
+$('#modifyBox').on('submit', '#modifyForm', function() {
+    let formData = $(this).serialize();
+    // 要修改的用户的 id
+    let id = $(this).attr('data-id');
+    $.ajax({
+        type: 'PUT',
+        url: '/users/' + id,
+        data: formData,
+        success: function(response) {
+            location.reload();
+        }
+    });
+    return false;
 });
