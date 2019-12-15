@@ -29,6 +29,7 @@ app.use(formidableMiddleware({
 }));
 
 // 数据库连接
+// 如果数据库是以带权限的服务启动的，这里要有账号才能正常运行
 mongoose.connect('mongodb://itcast:itcast@localhost:27017/alibaixiu', { useNewUrlParser: true, useCreateIndex: true})
 	.then(() => console.log('数据库连接成功'))
 	.catch(() => console.log('数据库连接失败'));
