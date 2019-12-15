@@ -156,7 +156,7 @@
             </td>
             <td>{{$value.email}}</td>
             <td>{{$value.nickName}}</td>
-            <td>{{$value.status == 0 ? '激活' : '未激活'}}</td>
+            <td>{{$value.status == 1 ? '激活' : '未激活'}}</td>
             <td>{{$value.role == 'admin' ? '超级管理员' : '普通用户'}}</td>
             <td class="text-center">
                 <a href="javascript:;" class="btn btn-default btn-xs edit" data-id="{{$value._id}}">编辑</a>
@@ -206,10 +206,10 @@
             </div>
             <div class="form-group">
                 <div class="radio-inline">
-                    <label><input {{status == 'admin' ? 'checked' : ''}} type="radio" name="role" value="admin">超级管理员</label>
+                    <label><input {{role == 'admin' ? 'checked' : ''}} type="radio" name="role" value="admin">超级管理员</label>
                 </div>
                 <div class="radio-inline">
-                    <label><input {{status == 'normal' ? 'checked' : ''}} type="radio" name="role" value="normal">普通用户</label>
+                    <label><input {{role == 'normal' ? 'checked' : ''}} type="radio" name="role" value="normal">普通用户</label>
                 </div>
             </div>
             <div class="form-group">
