@@ -1,3 +1,4 @@
+// 新增用户
 $('#userForm').on('submit', function() {
     // name=ifer&age=18
     let formData = $(this).serialize();
@@ -16,6 +17,7 @@ $('#userForm').on('submit', function() {
     return false;
 });
 
+// 上传头像
 $('#avatar').on('change', function() {
     let formData = new FormData();
     formData.append('avatar', this.files[0]);
@@ -37,4 +39,16 @@ $('#avatar').on('change', function() {
 
         }
     });
+});
+
+// 用户列表
+$.ajax({
+    type: 'GET',
+    url: '/users',
+    success: function(response) {
+        let html = template('userTpl', {
+            data: response
+        });
+        $('#userBox').html(html);
+    }
 });
