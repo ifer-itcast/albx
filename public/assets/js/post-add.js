@@ -28,3 +28,18 @@ $('#feature').on('change', function() {
         }
     });
 });
+
+// 添加文章
+$('#addForm').on('submit', function() {
+    let formData = $(this).serialize();
+    $.ajax({
+        type: 'POST',
+        url: '/posts',
+        data: formData,
+        success: function () {
+            // 添加成功跳转到文章列表
+            location.href = '/admin/posts.html';
+        }
+    });
+    return false;
+});
