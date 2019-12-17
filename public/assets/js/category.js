@@ -1,3 +1,4 @@
+// 添加分类
 $('#addCategory').on('submit', function() {
     let formData = $(this).serialize();
     $.ajax({
@@ -9,4 +10,16 @@ $('#addCategory').on('submit', function() {
         }
     });
     return false;
+});
+
+// 分类列表
+$.ajax({
+    type: 'GET',
+    url: '/categories',
+    success: function (response) {
+        let html = template('categoryListTpl', {
+            data: response
+        });
+        $('#categoryBox').html(html);
+    }
 });
