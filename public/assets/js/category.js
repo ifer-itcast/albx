@@ -53,3 +53,17 @@ $('#formBox').on('submit', '#modifyCategory', function() {
     });
     return false;
 });
+
+// 分类删除
+$('#categoryBox').on('click', '.delete', function() {
+    if(confirm('您真的要删除吗')) {
+        let id = $(this).attr('data-id');
+        $.ajax({
+            type: 'DELETE',
+            url: '/categories/' + id,
+            success: function () {
+                location.reload();
+            }
+        });
+    }
+});
