@@ -9,3 +9,22 @@ $.ajax({
         $('#category').html(html);
     }
 });
+
+// 上传图片
+$('#feature').on('change', function() {
+    let file = this.files[0];
+    let formData = new FormData();
+    formData.append('cover', file);
+    $.ajax({
+        type: 'POST',
+        url: '/upload',
+        data: formData,
+        // 不要处理 data 参数
+        processData: false,
+        // 不要设置参数类型，formData 里面已经设置好了
+        contentType: false,
+        success: function (response) {
+            $('#thumbnail').val(response[0].cover);
+        }
+    });
+});
