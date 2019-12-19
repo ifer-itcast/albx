@@ -48,6 +48,7 @@
       },
       success: function(response) {
         location.href = 'index.html';
+        localStorage.setItem('userInfo', JSON.stringify(response));
       },
       error: function() {
         alert('用户名或密码错误');

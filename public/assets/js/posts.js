@@ -66,7 +66,6 @@ $('#filterForm').on('submit', function() {
 // 删除文章
 // 删除文章
 $('#postsBox').on('click', '.delete', function() {
-    console.log(1);
     if(confirm('您真的要删除吗')) {
         var id = $(this).attr('data-id');
         $.ajax({
@@ -77,4 +76,32 @@ $('#postsBox').on('click', '.delete', function() {
             }
         });
     }
+});
+
+// 评论功能
+$('#postsBox').on('click', '.sen-com', function() {
+    $('#articleId').val($(this).data('id'));
+    $('#myModel').modal('show')
+});
+
+$('#sendBtn').on('click', function() {
+    // 获取后端需要的参数：author, content, post
+    var articleId = $('#articleId').val();
+    var content = $('#commentCon').val();
+    var userId = JSON.parse(localStorage.getItem('userInfo'))._id;
+    console.log(articleId, content, userId, 233);
+    $.ajax({
+        type: 'POST',
+        url: '/comments',
+        data: {
+            author: userId,
+            content: content,
+            post: articleId
+        },
+        success: function (res) {
+            location.href='comments.html';
+        }
+    });
+    // 发送请求
+    // 跳转
 });
