@@ -43,3 +43,53 @@ $('#addForm').on('submit', function() {
     });
     return false;
 });
+
+// 从浏览器地址栏获取参数
+function getUrlParams(name) {
+    // ?name=ifer&age=18
+    let paramsAry = location.search.substr(1).split('&');
+    for(let i = 0; i < paramsAry.length; i ++) {
+        let tmp = paramsAry[i].split('=');
+        if(tmp[0] === name) {
+            return tmp[1];
+        }
+    }
+    return -1;
+}
+
+let id = getUrlParams('id');
+
+if(id != -1) {
+    // 修改
+    $.ajax({
+        type: 'GET',
+        url: '/posts/' + id,
+        success: function (response) {
+            // 再次获取文章分类
+            $.ajax({
+                url: '/categories',
+                type: 'GET',
+                success: function (categories) {
+                    response.categories = categories;
+                    let html = template('modifyTpl', response);
+                    $('#parentBox').html(html);
+                }
+            });
+        }
+    });
+}
+
+// 修改文章信息表单发生提交行为的时候
+$('#parentBox').on('submit', '#modifyForm', function() {
+    var formData = $(this).serialize()
+    var id = $(this).attr('data-id');
+    $.ajax({
+        type: 'put',
+        url: '/posts/' + id,
+        data: formData,
+        success: function() {
+            location.href = '/admin/posts.html';
+        }
+    });
+    return false;
+});
