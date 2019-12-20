@@ -47,3 +47,17 @@ $('#commentsBox').on('click', '.status', function() {
         }
     });
 });
+
+// 删除
+$('#commentsBox').on('click', '.delete', function() {
+    if(confirm('您真的要删除啊')) {
+        var id = $(this).attr('data-id');
+        $.ajax({
+            type: 'delete',
+            url: '/comments/' + id,
+            success: function () {
+                location.reload();
+            }
+        });
+    }
+});
