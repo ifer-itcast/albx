@@ -18,6 +18,7 @@ $('#logo').on('change', function() {
     });
 });
 
+// 网站信息设置
 $('#settingsForm').on('submit', function() {
     var formData = $(this).serialize();
     console.log(formData)
@@ -30,4 +31,28 @@ $('#settingsForm').on('submit', function() {
         }
     });
     return false;
+});
+
+// 索要网站设置数据
+$.ajax({
+    type: 'GET',
+    url: '/settings',
+    success: function (response) {
+        if(response) {
+            // logo 地址存储在隐藏域中
+            $('#hiddenLogo').val(response.logo);
+            // 将 logo 显示在页面中
+            $('#preview').attr('src', response.logo);
+            // 网站标题
+            $('input[name="title"]').val(response.title);
+            // 网站描述
+            $('#site_description').val(response.description);
+            // 关键字
+            $('#site_keywords').val(response.keywords);
+            // 是否开启评论功能
+            $('input[name="comment"]').prop('checked', response.comment);
+            // 评论是否经过人工审核
+            $('input[name="review"]').prop('checked', response.review);
+        }
+    }
 });
