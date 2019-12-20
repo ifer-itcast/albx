@@ -19,3 +19,13 @@ $('#logout').on('click', function () {
         })
     }
 });
+
+// 登录信息展示
+$.ajax({
+    type: 'GET',
+    url: '/users/' + userId,
+    success: function (response) {
+        $('.avatar').attr('src', response.avatar);
+        $('.profile .name').html(response.nickName);
+    }
+});
