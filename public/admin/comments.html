@@ -25,12 +25,8 @@
         <h1>所有评论</h1>
       </div>
       <div class="page-action">
-        <ul class="pagination pagination-sm pull-right">
-          <li><a href="#">上一页</a></li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">下一页</a></li>
+        <ul class="pagination pagination-sm pull-right" id="pageBox">
+        
         </ul>
       </div>
       <table class="table table-striped table-bordered table-hover">
@@ -91,6 +87,7 @@
   <script src="../assets/vendors/jquery/jquery.js"></script>
   <script src="../assets/vendors/bootstrap/js/bootstrap.js"></script>
   <script src="../assets/vendors/art-template/template-web.js"></script>
+  <!-- 评论列表 -->
   <script type="text/html" id="commentsTpl">
   {{each records}}
   <tr>
@@ -106,7 +103,18 @@
   </tr>
   {{/each}}
   </script>
-
+  <!-- 分页 -->
+  <script type="text/html" id="pageTpl">
+    {{if page>1}}
+    <li><a href="javascript:;" onClick="changePage({{page-1}})">上一页</a></li>
+    {{/if}}
+    {{each display}}
+    <li class="{{page == $value ? 'active' : ''}}"><a href="javascript:;" onClick="changePage({{$value}})">{{$value}}</a></li>
+    {{/each}}
+    {{if page<pages}}
+    <li><a href="javascript:;" onClick="changePage({{page+1}})">下一页</a></li>
+    {{/if}}
+  </script>
   <script src="../assets/js/comments.js"></script>
   <script>NProgress.done()</script>
 </body>
