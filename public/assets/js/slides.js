@@ -30,3 +30,15 @@ $('#slidesForm').on('submit', function() {
     });
     return false;
 });
+
+// 轮播数据展示
+$.ajax({
+    type: 'GET',
+    url: '/slides',
+    success: function (response) {
+        var html = template('slidesTpl', {
+            data: response
+        });
+        $('#slidesBox').html(html);
+    }
+});
