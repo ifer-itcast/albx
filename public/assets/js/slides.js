@@ -42,3 +42,17 @@ $.ajax({
         $('#slidesBox').html(html);
     }
 });
+
+// 删除
+$('#slidesBox').on('click', '.delete', function() {
+    if(confirm('您真的要删除数据吗')) {
+        var id = $(this).attr('data-id');
+        $.ajax({
+            type: 'DELETE',
+            url: '/slides/' + id,
+            success: function () {
+                location.reload();
+            }
+        });
+    }
+});
