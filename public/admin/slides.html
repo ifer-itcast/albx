@@ -36,7 +36,8 @@
               <label for="image">图片</label>
               <!-- show when image chose -->
               <img class="help-block thumbnail" style="display: none">
-              <input id="image" class="form-control" name="image" type="file">
+              <input class="form-control" id="file" type="file">
+              <input type="hidden" id="image" name="image"/>
             </div>
             <div class="form-group">
               <label for="text">文本</label>
@@ -124,6 +125,7 @@
 
   <script src="../assets/vendors/jquery/jquery.js"></script>
   <script src="../assets/vendors/bootstrap/js/bootstrap.js"></script>
+  <script src="../assets/js/slides.js"></script>
   <script>NProgress.done()</script>
 </body>
 </html>
