@@ -87,6 +87,7 @@
   <script src="../assets/vendors/jquery/jquery.js"></script>
   <script src="../assets/vendors/bootstrap/js/bootstrap.js"></script>
   <script src="../assets/vendors/art-template/template-web.js"></script>
+  <script src="../assets/js/common.js"></script>
   <!-- 评论列表 -->
   <script type="text/html" id="commentsTpl">
   {{each records}}
@@ -94,7 +95,7 @@
     <td>{{$value.author.nickName}}</td>
     <td>{{$value.content}}</td>
     <td>{{$value.post.title}}</td>
-    <td>{{$value.createAt}}</td>
+    <td>{{$imports.formatDate($value.createAt)}}</td>
     <td>{{$value.state == 0 ? '未审核' : '已批准'}}</td>
     <td class="text-center">
       <a href="post-add.html" class="btn btn-warning btn-xs">驳回</a>
