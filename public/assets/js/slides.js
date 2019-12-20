@@ -1,3 +1,4 @@
+// 轮播图数据之添加图片
 $('#file').on('change', function() {
     // 用户上传的文件
     var file = this.files[0];
@@ -14,4 +15,18 @@ $('#file').on('change', function() {
             $('#image').val(response[0].image);
         }
     });
+});
+
+// 轮播图其他数据添加
+$('#slidesForm').on('submit', function() {
+    var formData = $(this).serialize();
+    $.ajax({
+        type: 'POST',
+        url: '/slides',
+        data: formData,
+        success: function (response) {
+            location.reload();
+        }
+    });
+    return false;
 });
