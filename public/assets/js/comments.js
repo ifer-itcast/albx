@@ -30,3 +30,20 @@ function changePage(page) {
         }
     });
 }
+
+// 点击审核按钮
+$('#commentsBox').on('click', '.status', function() {
+    // 获取当前评论的状态
+    var status = $(this).attr('data-status');
+    var id = $(this).attr('data-id');
+    $.ajax({
+        type: 'PUT',
+        url: '/comments/' + id,
+        data: {
+            state: status == 0 ? 1 : 0
+        },
+        success: function () {
+            location.reload();
+        }
+    });
+});
