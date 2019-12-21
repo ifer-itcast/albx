@@ -56,3 +56,26 @@ $.ajax({
         $('#commentBox').html(html);
     }
 });
+
+// 导航数据展示
+$.ajax({
+    type: 'GET',
+    url: '/categories',
+    success: function (response) {
+        console.log(response);
+        var navTpl = `
+        {{each data}}
+        <li>
+            <a href="list.html?categoryId={{$value._id}}">
+                <i class="fa {{$value.className}}"></i>{{$value.title}}
+            </a>
+        </li>
+        {{/each}}
+        `;
+        var html = template.render(navTpl, {
+            data: response
+        });
+        $('#navBox').html(html);
+        $('#topNavBox').html(html);
+    }
+});
