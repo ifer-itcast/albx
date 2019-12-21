@@ -653,6 +653,9 @@ img {
   height: 250px;
   margin-bottom: 20px;
 }
+.content .swipe img{
+  height: 250px;
+}
 .content .swipe-wrapper {
   overflow: hidden;
   position: relative;
