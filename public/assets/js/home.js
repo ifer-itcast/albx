@@ -1,3 +1,4 @@
+// 轮播图数据
 $.ajax({
 	type: 'GET',
 	url: '/slides',
@@ -25,5 +26,17 @@ $.ajax({
 				swiper.next();
 			}
 		});
+	}
+});
+
+// 最新发布数据
+$.ajax({
+	type: 'GET',
+	url: '/posts/lasted',
+	success: function (response) {
+		var html = template('lastedTpl', {
+			data: response
+		});
+		$('#lastedBox').html(html);
 	}
 });
