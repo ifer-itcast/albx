@@ -1,3 +1,8 @@
+function formatDate(date) {
+    // 将日期时间字符串转日期对象
+    date = new Date(date);
+    return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+}
 // 随机数据展示
 $.ajax({
     type: 'GET',
@@ -20,5 +25,34 @@ $.ajax({
             data:response
         });
         $('#randomBox').html(html);
+    }
+});
+
+// 最新评论数据
+$.ajax({
+    type: 'GET',
+    url: '/comments/lasted',
+    success: function (response) {
+        var commentTpl = `
+        {{each data}}
+        <li>
+            <a href="javascript:;">
+              <div class="avatar">
+                <img src="{{$value.author.avatar}}" alt="">
+              </div>
+              <div class="txt">
+                <p>
+                  <span>{{$value.author.nickName}}</span>{{$imports.formatDate($value.createAt)}}说:
+                </p>
+                <p>{{$value.content}}</p>
+              </div>
+            </a>
+          </li>
+          {{/each}}
+        `;
+        var html = template.render(commentTpl, {
+            data: response
+        });
+        $('#commentBox').html(html);
     }
 });
