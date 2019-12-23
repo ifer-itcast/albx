@@ -90,3 +90,11 @@ $.ajax({
         $('#topNavBox').html(html);
     }
 });
+
+// 搜索文章
+$('.search form').on('submit', function() {
+  var keys = $(this).find('.keys').val();
+  // 跳转到搜索结果页，并将搜索关键字带过去
+  location.href= 'search.html?key=' + keys;
+  return false;
+});
