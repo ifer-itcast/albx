@@ -9,4 +9,13 @@ $.ajax({
         $('#article').html(html);
     }
 });
-
+// 点赞
+$('#article').on('click', '#like', function() {
+    $.ajax({
+        type: 'POST',
+        url: '/posts/fabulous/' + postId,
+        success: function () {
+            alert('点赞成功，感谢您的支持')
+        }
+    });
+});
