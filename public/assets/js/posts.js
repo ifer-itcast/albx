@@ -82,7 +82,7 @@ $('#sendBtn').on('click', function() {
     // 获取后端需要的参数：author, content, post
     var articleId = $('#articleId').val();
     var content = $('#commentCon').val();
-    var userId = JSON.parse(localStorage.getItem('userInfo'))._id;
+    // var userId = JSON.parse(localStorage.getItem('userInfo'))._id;
     console.log(articleId, content, userId, 233);
     $.ajax({
         type: 'POST',

@@ -43,7 +43,7 @@ if(isLogin) {
 // 评论功能
 $('#comment').on('submit', 'form', function() {
     var content = $(this).find('textarea').val();
-    var userId = JSON.parse(localStorage.getItem('userInfo'))._id;
+    // var userId = JSON.parse(localStorage.getItem('userInfo'))._id;
     $.ajax({
         type: 'POST',
         url: '/comments',
