@@ -1,3 +1,15 @@
+// 从浏览器地址栏获取参数
+function getUrlParams(name) {
+  // ?name=ifer&age=18
+  let paramsAry = location.search.substr(1).split('&');
+  for(let i = 0; i < paramsAry.length; i ++) {
+      let tmp = paramsAry[i].split('=');
+      if(tmp[0] === name) {
+          return tmp[1];
+      }
+  }
+  return -1;
+}
 function formatDate(date) {
     // 将日期时间字符串转日期对象
     date = new Date(date);
@@ -62,7 +74,6 @@ $.ajax({
     type: 'GET',
     url: '/categories',
     success: function (response) {
-        console.log(response);
         var navTpl = `
         {{each data}}
         <li>
