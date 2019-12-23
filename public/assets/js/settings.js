@@ -18,10 +18,13 @@ $('#logo').on('change', function() {
     });
 });
 
+$('#allowComment, #allowReview').on('click', function() {
+    $(this).val($(this).prop('checked'));
+});
+
 // 网站信息设置
 $('#settingsForm').on('submit', function() {
     var formData = $(this).serialize();
-    console.log(formData)
     $.ajax({
         type: 'POST',
         url: '/settings',

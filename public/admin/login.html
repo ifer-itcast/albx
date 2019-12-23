@@ -47,7 +47,14 @@
         password
       },
       success: function(response) {
-        location.href = 'index.html';
+        // 对用户的角色进行判断
+        // 如果是管理员就跳转到数据管理的首页
+        // 如果是普通用户就跳转到网站的首页
+        if(response.role === 'admin') { 
+          location.href = '/admin/index.html';
+        } else {
+          location.href = '/index.html';
+        }
         localStorage.setItem('userInfo', JSON.stringify(response));
       },
       error: function() {

@@ -19,3 +19,17 @@ $('#article').on('click', '#like', function() {
         }
     });
 });
+
+// 获取网站配置信息
+$.ajax({
+    type: 'GET',
+    url: '/settings',
+    success: function (response) {
+        // 判断管理员是否开启了评论功能
+        if(response.comment) {
+            // 渲染评论
+            var html = template('commentTpl');
+            $('#comment').html(html);
+        }
+    }
+});

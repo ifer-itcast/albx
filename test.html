@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- jquery 对不勾选的框不会做处理 -->
+    <form action="">
+        <input type="checkbox" name="comment" value="true">
+        <input type="checkbox" name="review" value="true">
+        <input type="submit" value="提交">
+    </form>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+    $('form').on('submit', function() {
+        console.log($(this).serialize());
+        return false;
+    })
+    </script>
+</body>
+</html>
